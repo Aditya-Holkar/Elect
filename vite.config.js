@@ -1,22 +1,22 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
-import { visualizer } from 'rollup-plugin-visualizer'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  plugins: [
-    react(),
-    tailwindcss(),
-    visualizer({ open: false, gzipSize: true, brotliSize: true }),
-  ],
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks(id) {
-          if (id.includes('node_modules/react-dom') || id.includes('node_modules/react/') || id.includes('node_modules/react-router')) return 'vendor'
-          if (id.includes('node_modules/framer-motion') || id.includes('node_modules/gsap')) return 'animations'
-        },
-      },
-    },
+  plugins: [react(), tailwindcss()],
+  server: {
+    port: 3000,
+    host: true,
   },
-})
+  preview: {
+    port: 3000,
+    host: true,
+    allowedHosts: [
+     
+      ".onrender.com", // Allows all Render subdomains
+      "localhost",
+      "127.0.0.1",
+    ],
+  },
+  base: "./",
+});
