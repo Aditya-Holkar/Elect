@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+@theme {
+  --color-primary: #0c2340;
+  --color-primary-light: #1a4a7a;
+  --color-accent: #f59e0b;
+  --color-accent-light: #fbbf24;
+  --color-surface: #f8fafc;
+  --color-surface-alt: #f1f5f9;
+  --color-dark: #090d1a;
+  --color-dark-alt: #111827;
+  --color-text: #334155;
+  --color-text-muted: #64748b;
+  --color-success: #10b981;
+  --color-success-bg: #ecfdf5;
+  --color-error: #ef4444;
+  --color-error-bg: #fef2f2;
+  --color-border: #e2e8f0;
+  --color-border-dark: #374151;
+  --color-text-dark: #e2e8f0;
+}
+
+
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+.dark .text-primary {
+  color: #f8fafc;
+}
+
+html.dark body {
+  background-color: var(--color-dark);
+  color: var(--color-text-dark);
+}
+
+.dark .text-primary {
+  color: #e2e8f0;
+}
+
+body {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.4s;
+  animation-timing-function: ease-out;
+}
